@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public int Pickups 
     { 
         get { return pickups; } 
-        set { pickups += value; }
+        set { pickups = value; }
     }
 
     private void Awake() 

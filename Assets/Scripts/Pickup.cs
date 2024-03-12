@@ -9,9 +9,12 @@ public class Pickup : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
         
-        other.gameObject.GetComponent<PlayerController>().Pickups++;
-
-        GameObject.FindWithTag("Manager").GetComponent<GameManager>().objectsToDestroy.Add(gameObject.name);
+        PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
+        GameManager gameManager = GameObject.FindWithTag("Manager").GetComponent<GameManager>();
+        
+        playerController.Pickups++;
+        gameManager.SetPickupText(playerController.Pickups);
+        gameManager.objectsToDestroy.Add(gameObject.name);
 
         Destroy(gameObject);
     }

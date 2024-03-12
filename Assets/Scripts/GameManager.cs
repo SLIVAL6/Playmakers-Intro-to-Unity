@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public List<string> objectsToDestroy = new List<string>();
+    [SerializeField] private TextMeshProUGUI textPickups;
+    [HideInInspector] public List<string> objectsToDestroy = new List<string>();
 
     private void Awake() 
     {
@@ -15,6 +17,16 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Update() 
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Destroy(GameObject.Find("Player"));
+            objectsToDestroy.Clear();
+            SceneManager.LoadScene(0);
+        }
     }
 
     private void OnEnable() 
@@ -32,5 +44,10 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log("OnSceneLoaded: " + scene.name);
+    }
+
+    public void SetPickupText(int numberOfPickups)
+    {
+        textPickups.text = $"ID Cards: {numberOfPickups}";
     }
 }
