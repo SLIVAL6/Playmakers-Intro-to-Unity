@@ -19,7 +19,7 @@ public class EndGoal : MonoBehaviour
         }
         else if (playerController.Pickups >= pickupsRequired)
         {
-            Debug.Log("Victory");
+            GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().Victory();
         }
     }
 }

@@ -7,10 +7,13 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textPickups;
+    [SerializeField] private TextMeshProUGUI textVictory;
     [HideInInspector] public List<string> objectsToDestroy = new List<string>();
 
     private void Awake() 
     {
+        textVictory.enabled = false;
+
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Manager");
 
         if (objs.Length > 1)
@@ -21,12 +24,7 @@ public class GameManager : MonoBehaviour
 
     private void Update() 
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Destroy(GameObject.Find("Player"));
-            objectsToDestroy.Clear();
-            SceneManager.LoadScene(0);
-        }
+        Restart();
     }
 
     private void OnEnable() 
@@ -49,5 +47,24 @@ public class GameManager : MonoBehaviour
     public void SetPickupText(int numberOfPickups)
     {
         textPickups.text = $"ID Cards: {numberOfPickups}";
+    }
+
+    private void Restart()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SetPickupText(0);
+            textVictory.enabled = false;
+            Time.timeScale = 1f;
+            Destroy(GameObject.Find("Player"));
+            objectsToDestroy.Clear();
+            SceneManager.LoadScene(0);
+        }
+    }
+
+    public void Victory()
+    {
+        textVictory.enabled = true;
+        Time.timeScale = 0f;
     }
 }
