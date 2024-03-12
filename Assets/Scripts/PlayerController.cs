@@ -5,7 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
+    public enum SpawnPosition { Left, Right, Top, Bottom }
+    [HideInInspector] public SpawnPosition position;
     [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private Vector2 leftSpawnPosition = new Vector2(-5f, 0f);
+    
+    [SerializeField] private Vector2 rightSpawnPosition = new Vector2(5f, 0f);
+    
+    [SerializeField] private Vector2 topSpawnPosition = new Vector2(0f, 5f);
+    
+    [SerializeField] private Vector2 bottomSpawnPosition = new Vector2(0f, -5f);
 
     private void Awake() 
     {
@@ -29,5 +38,24 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         rb.velocity = new Vector2(x * moveSpeed, y * moveSpeed);
+    }
+
+    public void RepositionPlayer(SpawnPosition position)
+    {
+        switch (position)
+        {
+            case SpawnPosition.Left:
+                transform.position = leftSpawnPosition;
+                break;
+            case SpawnPosition.Right:
+                transform.position = rightSpawnPosition;
+                break;
+            case SpawnPosition.Top:
+                transform.position = topSpawnPosition;
+                break;
+            case SpawnPosition.Bottom:
+                transform.position = bottomSpawnPosition;
+                break;
+        }
     }
 }
