@@ -12,9 +12,15 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] private Vector2 rightSpawnPosition = new Vector2(5f, 0f);
     
-    [SerializeField] private Vector2 topSpawnPosition = new Vector2(0f, 5f);
+    [SerializeField] private Vector2 topSpawnPosition = new Vector2(0f, 3f);
     
-    [SerializeField] private Vector2 bottomSpawnPosition = new Vector2(0f, -5f);
+    [SerializeField] private Vector2 bottomSpawnPosition = new Vector2(0f, -3f);
+    [SerializeField] private int pickups = 0;
+    [HideInInspector] public int Pickups 
+    { 
+        get { return pickups; } 
+        set { pickups += value; }
+    }
 
     private void Awake() 
     {
