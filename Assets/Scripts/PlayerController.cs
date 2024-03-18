@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
+    private Animator animator;
     public enum SpawnPosition { Left, Right, Top, Bottom }
     [HideInInspector] public SpawnPosition position;
     [SerializeField] private float moveSpeed = 10f;
@@ -32,11 +34,15 @@ public class PlayerController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         Move();
+        FlipSprite();
+        ProcessAnimationSpeed();
     }
 
     private void Move()
@@ -44,6 +50,28 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         rb.velocity = new Vector2(x * moveSpeed, y * moveSpeed);
+    }
+
+    private void FlipSprite()
+    {
+        if (spriteRenderer == null)
+            return;
+
+        if (rb.velocity.x >= 0.2f)
+            spriteRenderer.flipX = false;
+        else if (rb.velocity.x <= -0.2f)
+            spriteRenderer.flipX = true;
+    }
+
+    private void ProcessAnimationSpeed()
+    {
+        if (animator == null)
+            return;
+        
+        if (rb.velocity == Vector2.zero)
+            animator.speed = 0f;
+        else
+            animator.speed = 1f;
     }
 
     public void RepositionPlayer(SpawnPosition position)
