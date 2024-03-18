@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake() 
     {
-        textVictory.enabled = false;
+        if (textVictory != null)
+            textVictory.enabled = false;
 
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Manager");
 
@@ -46,7 +47,8 @@ public class GameManager : MonoBehaviour
 
     public void SetPickupText(int numberOfPickups)
     {
-        textPickups.text = $"ID Cards: {numberOfPickups}";
+        if (textPickups != null)
+            textPickups.text = $"ID Cards: {numberOfPickups}";
     }
 
     private void Restart()
@@ -64,7 +66,9 @@ public class GameManager : MonoBehaviour
 
     public void Victory()
     {
-        textVictory.enabled = true;
+        if (textVictory != null)
+            textVictory.enabled = true;
+        
         Time.timeScale = 0f;
     }
 }
