@@ -13,6 +13,7 @@ public class Pickup : MonoBehaviour
         GameManager gameManager = GameObject.FindWithTag("Manager").GetComponent<GameManager>();
         
         playerController.Pickups++;
+        playerController.PlaySFXPickup();
         gameManager.SetPickupText(playerController.Pickups);
         gameManager.objectsToDestroy.Add(gameObject.name);
 

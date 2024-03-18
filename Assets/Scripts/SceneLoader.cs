@@ -15,21 +15,26 @@ public class SceneLoader : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
+        PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
+
         switch (doorPosition)
         {
             case DoorPosition.Left:
-                other.gameObject.GetComponent<PlayerController>().RepositionPlayer(PlayerController.SpawnPosition.Right);
+                playerController.RepositionPlayer(PlayerController.SpawnPosition.Right);
                 break;
             case DoorPosition.Right:
-                other.gameObject.GetComponent<PlayerController>().RepositionPlayer(PlayerController.SpawnPosition.Left);
+                playerController.RepositionPlayer(PlayerController.SpawnPosition.Left);
                 break;
             case DoorPosition.Top:
-                other.gameObject.GetComponent<PlayerController>().RepositionPlayer(PlayerController.SpawnPosition.Bottom);
+                playerController.RepositionPlayer(PlayerController.SpawnPosition.Bottom);
                 break;
             case DoorPosition.Bottom:
-                other.gameObject.GetComponent<PlayerController>().RepositionPlayer(PlayerController.SpawnPosition.Top);
+                playerController.RepositionPlayer(PlayerController.SpawnPosition.Top);
                 break;
         }
+
+        playerController.PlaySFXDoor();
+
         SceneManager.LoadScene(sceneIndexToLoad);
     }
 }

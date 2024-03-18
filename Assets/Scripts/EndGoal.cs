@@ -19,6 +19,7 @@ public class EndGoal : MonoBehaviour
         }
         else if (playerController.Pickups >= pickupsRequired)
         {
+            playerController.PlaySFXElevator();
             GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().Victory();
         }
     }

@@ -9,7 +9,11 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     public enum SpawnPosition { Left, Right, Top, Bottom }
     [HideInInspector] public SpawnPosition position;
+
+    [Header("Movement")]
     [SerializeField] private float moveSpeed = 10f;
+
+    [Header("Spawning")]
     [SerializeField] private Vector2 leftSpawnPosition = new Vector2(-5f, 0f);
     
     [SerializeField] private Vector2 rightSpawnPosition = new Vector2(5f, 0f);
@@ -17,12 +21,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 topSpawnPosition = new Vector2(0f, 3f);
     
     [SerializeField] private Vector2 bottomSpawnPosition = new Vector2(0f, -3f);
+
+    [Header("Pickups")]
     [SerializeField] private int pickups = 0;
     [HideInInspector] public int Pickups 
     { 
         get { return pickups; } 
         set { pickups = value; }
     }
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource sfxPickup;
+    [SerializeField] private AudioSource sfxDoor;
+    [SerializeField] private AudioSource sfxElevator;
 
     private void Awake() 
     {
@@ -91,5 +102,23 @@ public class PlayerController : MonoBehaviour
                 transform.position = bottomSpawnPosition;
                 break;
         }
+    }
+
+    public void PlaySFXPickup()
+    {
+        if (sfxPickup != null)
+            sfxPickup.Play();
+    }
+
+    public void PlaySFXDoor()
+    {
+        if (sfxDoor != null)
+            sfxDoor.Play();
+    }
+
+    public void PlaySFXElevator()
+    {
+        if (sfxElevator != null)
+            sfxElevator.Play();
     }
 }
