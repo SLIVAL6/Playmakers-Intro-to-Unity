@@ -4353,6 +4353,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4702473044108048910, guid: fbdc1b6510117e948ae9873d89aa71de, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e5b6c50a6cd4abf498f9615f9f534c70, type: 2}
+    - target: {fileID: 4702473044108048910, guid: fbdc1b6510117e948ae9873d89aa71de, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6114573904046622511, guid: e5b6c50a6cd4abf498f9615f9f534c70, type: 2}
+    - target: {fileID: 4702473044108048910, guid: fbdc1b6510117e948ae9873d89aa71de, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535671119224221163, guid: fbdc1b6510117e948ae9873d89aa71de, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 09cf5bc5d0cb28c4d9c2ad1447f09174, type: 2}
+    - target: {fileID: 8535671119224221163, guid: fbdc1b6510117e948ae9873d89aa71de, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 6303503697846135286, guid: 09cf5bc5d0cb28c4d9c2ad1447f09174, type: 2}
+    - target: {fileID: 8535671119224221163, guid: fbdc1b6510117e948ae9873d89aa71de, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143990318316115067, guid: fbdc1b6510117e948ae9873d89aa71de, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1822686835493969191, guid: fbdc1b6510117e948ae9873d89aa71de, type: 3}
